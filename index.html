@@ -1,60 +1,75 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>QuickMart - Your Local Grocery Partner</title>
-  <link rel="stylesheet" href="style.css" />
+    <meta charset="UTF-8">
+    <title>QuickMart</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <header>
-    <div class="container">
-      <img src="logo.jpg" alt="QuickMart Logo" class="logo" />
-      <nav>
-        <a href="#about">About</a>
-        <a href="#services">Products</a>
-        <a href="#contact">Contact</a>
-      </nav>
-    </div>
-  </header>
+    <header>
+        <img src="logo.jpg" alt="QuickMart Logo" class="logo">
+        <nav>
+            <ul class="nav-links">
+                <li><a href="#">Home</a></li>
+                <li><a href="#">Products</a></li>
+                <li><a href="#">Contact</a></li>
+                <li><a href="#">About</a></li>
+            </ul>
+        </nav>
+    </header>
 
-  <section class="hero">
-    <h1>Welcome to QuickMart</h1>
-    <p>Your Trusted Grocery Partner in Bangladesh</p>
-  </section>
-
-  <section id="about" class="section">
-    <div class="container">
-      <h2>About Us</h2>
-      <p>QuickMart brings you daily essentials, fresh groceries, and household items at affordable prices. We are committed to quality and convenience for Bangladeshi families.</p>
+    <div class="search-bar">
+        <input type="text" placeholder="Search for products...">
+        <button>Search</button>
     </div>
-  </section>
 
-  <section id="services" class="section">
-    <div class="container">
-      <h2>Our Products</h2>
-      <ul class="product-list">
-        <li>Fresh Vegetables</li>
-        <li>Rice, Lentils & Spices</li>
-        <li>Snacks & Beverages</li>
-        <li>Personal Care Products</li>
-      </ul>
+    <div class="category-menu">
+        <div class="dropdown">
+            <button class="dropbtn">Groceries ⌄</button>
+            <div class="dropdown-content">
+                <a href="#">Favourites</a>
+                <a href="#">Offers</a>
+                <a href="#">Fruit & Vegetables</a>
+                <a href="#">Meat & Fish</a>
+                <a href="#">Dairy, Eggs & Chilled</a>
+                <a href="#">Bakery</a>
+                <a href="#">Dietary & World Foods</a>
+                <a href="#">Food Cupboard</a>
+                <a href="#">Occasions</a>
+                <a href="#">Drinks</a>
+                <a href="#">Frozen</a>
+                <a href="#">Household, Laundry & Cleaning</a>
+                <a href="#">Beauty & Cosmetics</a>
+                <a href="#">Toiletries & Health</a>
+                <a href="#">Baby & Toddler</a>
+                <a href="#">Pet</a>
+                <a href="#">Homeware, Garden & Flowers</a>
+                <a href="#">Coffee</a>
+                <a href="#">Meal Deals</a>
+            </div>
+        </div>
     </div>
-  </section>
 
-  <section id="contact" class="section">
-    <div class="container">
-      <h2>Contact Us</h2>
-      <p>Email: info@quickmart.com</p>
-      <p>Phone: +880 1234-567890</p>
-      <p>Location: Dhaka, Bangladesh</p>
-    </div>
-  </section>
+    <main>
+        <section class="hero">
+            <h1>Welcome to QuickMart</h1>
+            <p>Your favorite neighborhood grocery store in Bangladesh.</p>
+        </section>
 
-  <footer>
-    <div class="container">
-      <p>&copy; 2025 QuickMart. All rights reserved.</p>
-    </div>
-  </footer>
+        <section class="contact">
+            <h2>Contact Us</h2>
+            <p>Phone: 01234-567890</p>
+            <p>Email: info@quickmart.com</p>
+        </section>
+
+        <section class="location">
+            <h2>Our Location</h2>
+            <p>Dhaka, Bangladesh</p>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 QuickMart. All rights reserved.</p>
+    </footer>
 </body>
 </html>
