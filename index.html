@@ -5,6 +5,7 @@
     <title>QuickMart</title>
     <link rel="stylesheet" href="style.css">
     <script type="module" src="script.js" defer></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 <body>
     <header>
@@ -44,6 +45,7 @@
         <div class="dropdown">
             <button class="dropbtn">Groceries ⌄</button>
             <div class="dropdown-content">
+                <!-- all category options here -->
                 <a href="#">Favourites</a>
                 <a href="#">Offers</a>
                 <a href="#">Fruit & Vegetables</a>
@@ -71,6 +73,35 @@
         <section class="hero">
             <h1>Welcome to QuickMart</h1>
             <p>Your favorite neighborhood grocery store in Bangladesh.</p>
+        </section>
+
+        <!-- 🛒 Product Section -->
+        <section class="products-container">
+            <div class="product-card">
+                <img src="product1.jpg" alt="Product 1">
+                <h3>Product Name 1</h3>
+                <p class="tag">Occasions</p>
+                <p><strong>৳450</strong> <span class="old-price">৳500</span></p>
+                <button>Add</button>
+            </div>
+
+            <div class="product-card">
+                <img src="product2.jpg" alt="Product 2">
+                <h3>Product Name 2</h3>
+                <p class="tag">Fruit</p>
+                <p><strong>৳220</strong> <span class="old-price">৳270</span></p>
+                <button>Add</button>
+            </div>
+
+            <div class="product-card">
+                <img src="product3.jpg" alt="Product 3">
+                <h3>Product Name 3</h3>
+                <p class="tag">Dairy</p>
+                <p><strong>৳110</strong> <span class="old-price">৳150</span></p>
+                <button>Add</button>
+            </div>
+
+            <!-- ➕ You can keep duplicating this for more products -->
         </section>
 
         <section class="contact">
