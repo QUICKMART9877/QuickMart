@@ -4,12 +4,11 @@
     <meta charset="UTF-8">
     <title>QuickMart</title>
     <link rel="stylesheet" href="style.css">
-    <script type="module" src="script.js" defer></script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 <body>
     <header>
-        <img src="logo.jpg" alt="QuickMart Logo" class="logo">
+        <img src="logo.jpg.jpg" alt="QuickMart Logo" class="logo">
         <nav>
             <ul class="nav-links">
                 <li><a href="#">Home</a></li>
@@ -22,7 +21,6 @@
         </nav>
     </header>
 
-    <!-- 🔐 Login Popup -->
     <div id="login-popup" style="display:none; position:absolute; top:80px; right:20px; background:#fff; border:1px solid #ccc; padding:15px; box-shadow: 0 2px 5px rgba(0,0,0,0.2); z-index:1000;">
         <h3>Login</h3>
         <input type="email" id="login-email" placeholder="Email"><br><br>
@@ -37,6 +35,12 @@
         <p id="message" style="color:green; font-size: 0.9rem;"></p>
     </div>
 
+    <div id="cart-box" style="display:none; position:fixed; top:80px; right:20px; background:#fff; border:1px solid #ccc; padding:15px; box-shadow: 0 2px 5px rgba(0,0,0,0.2); width:300px; z-index:1000;">
+        <h3>Your Cart</h3>
+        <ul id="cart-items"></ul>
+        <p><strong>Total:</strong> <span id="cart-total">৳0</span></p>
+    </div>
+
     <div class="search-bar">
         <input type="text" placeholder="Search for products...">
         <button>Search</button>
@@ -46,7 +50,6 @@
         <div class="dropdown">
             <button class="dropbtn">Groceries ⌄</button>
             <div class="dropdown-content">
-                <!-- all category options here -->
                 <a href="#">Favourites</a>
                 <a href="#">Offers</a>
                 <a href="#">Fruit & Vegetables</a>
@@ -76,45 +79,39 @@
             <p>Your favorite neighborhood grocery store in Bangladesh.</p>
         </section>
 
-        <!-- 🛒 Product Section -->
         <section class="products-container">
             <div class="product-card">
-                <img src="product1.jpg" alt="Product 1">
-                <h3>Product Name 1</h3>
-                <p class="tag">Occasions</p>
+                <img src="product1.jpg" alt="Cucumber">
+                <h3>Cucumber</h3>
+                <p class="tag">Vegetables</p>
                 <p><strong>৳450</strong> <span class="old-price">৳500</span></p>
-                <button>Add</button>
-            </div>
-<div id="cart-box" style="display:none; position:fixed; top:80px; right:20px; background:#fff; border:1px solid #ccc; padding:15px; box-shadow: 0 2px 5px rgba(0,0,0,0.2); width:300px; z-index:1000;">
-    <h3>Your Cart</h3>
-    <ul id="cart-items"></ul>
-    <p><strong>Total:</strong> <span id="cart-total">৳0</span></p>
-</div>
-
-      <div class="product-card">
-  <img src="apple.jpg" alt="Apple">
-  <h3>Fresh Apple</h3>
-  <p>৳120</p>
-  <button onclick="addToCart('Fresh Apple', 120)">Add to Cart</button>
-</div>
-    
-                <div class="product-card">
-                <img src="product2.jpg" alt="Product 2">
-                <h3>Product Name 2</h3>
-                <p class="tag">Fruit</p>
-                <p><strong>৳220</strong> <span class="old-price">৳270</span></p>
-                <button>Add</button>
+                <button onclick="addToCart('Product Name 1', 450)">Add</button>
             </div>
 
             <div class="product-card">
-                <img src="product3.jpg" alt="Product 3">
-                <h3>Product Name 3</h3>
-                <p class="tag">Dairy</p>
-                <p><strong>৳110</strong> <span class="old-price">৳150</span></p>
-                <button>Add</button>
+                <img src="product4.jpg" alt="Orange">
+                <h3>Orange</h3>
+                <p class="tag">Fruit</p>
+                <p><strong>৳220</strong> <span class="old-price">৳270</span></p>
+                <button onclick="addToCart('Product Name 2', 220)">Add</button>
             </div>
 
-            <!-- ➕ You can keep duplicating this for more products -->
+            <div class="product-card">
+                <img src="product3.jpg" alt="Banana">
+                <h3>Banana</h3>
+                <p class="tag">Fruit</p>
+                <p><strong>৳110</strong> <span class="old-price">৳150</span></p>
+                <button onclick="addToCart('Product Name 3', 110)">Add</button>
+            </div>
+
+            <div class="product-card">
+              <img src="apple.jpg" alt="Apple">
+              <h3>Apple</h3>
+             <p class="tag">Fruit</p>
+              <p>৳120</strong> <span class="old-price">৳150</span></p>
+              <button onclick="addToCart('Fresh Apple', 120)">Add</button>
+            </div>
+
         </section>
 
         <section class="contact">
@@ -134,9 +131,54 @@
     </footer>
 
     <script>
+        // --- Login Box ---
         function toggleLoginBox() {
             const box = document.getElementById("login-popup");
             box.style.display = box.style.display === "none" ? "block" : "none";
+        }
+        
+        // Placeholder functions for login/signup
+        function login() { console.log("Login attempt"); }
+        function forgotPassword() { console.log("Forgot password"); }
+        function signUp() { console.log("Sign up attempt"); }
+
+        // --- Shopping Cart ---
+        let cart = [];
+        const cartItemsElement = document.getElementById('cart-items');
+        const cartTotalElement = document.getElementById('cart-total');
+        const cartCountElement = document.getElementById('cart-count');
+
+        function toggleCart() {
+            const box = document.getElementById("cart-box");
+            box.style.display = box.style.display === "none" ? "block" : "none";
+        }
+
+        function addToCart(productName, price) {
+            // Check if product is already in cart
+            const existingProduct = cart.find(item => item.name === productName);
+            if (existingProduct) {
+                existingProduct.quantity++;
+            } else {
+                cart.push({ name: productName, price: price, quantity: 1 });
+            }
+            updateCart();
+        }
+
+        function updateCart() {
+            cartItemsElement.innerHTML = ''; // Clear current cart display
+            let total = 0;
+            let count = 0;
+            
+            cart.forEach(item => {
+                const li = document.createElement('li');
+                li.textContent = `${item.name} (x${item.quantity}) - ৳${item.price * item.quantity}`;
+                cartItemsElement.appendChild(li);
+                total += item.price * item.quantity;
+                count += item.quantity;
+            });
+
+            cartTotalElement.textContent = `৳${total}`;
+            cartCountElement.textContent = count;
         }
     </script>
 </body>
