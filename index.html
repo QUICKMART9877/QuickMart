@@ -17,6 +17,7 @@
                 <li><a href="#">Contact</a></li>
                 <li><a href="#">About</a></li>
                 <li><a href="#" onclick="toggleLoginBox()">Login</a></li>
+                <li><a href="#" onclick="toggleCart()">🛒 Cart (<span id="cart-count">0</span>)</a></li>
             </ul>
         </nav>
     </header>
@@ -84,8 +85,20 @@
                 <p><strong>৳450</strong> <span class="old-price">৳500</span></p>
                 <button>Add</button>
             </div>
+<div id="cart-box" style="display:none; position:fixed; top:80px; right:20px; background:#fff; border:1px solid #ccc; padding:15px; box-shadow: 0 2px 5px rgba(0,0,0,0.2); width:300px; z-index:1000;">
+    <h3>Your Cart</h3>
+    <ul id="cart-items"></ul>
+    <p><strong>Total:</strong> <span id="cart-total">৳0</span></p>
+</div>
 
-            <div class="product-card">
+      <div class="product-card">
+  <img src="apple.jpg" alt="Apple">
+  <h3>Fresh Apple</h3>
+  <p>৳120</p>
+  <button onclick="addToCart('Fresh Apple', 120)">Add to Cart</button>
+</div>
+    
+                <div class="product-card">
                 <img src="product2.jpg" alt="Product 2">
                 <h3>Product Name 2</h3>
                 <p class="tag">Fruit</p>
