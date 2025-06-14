@@ -2,9 +2,9 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>QuickMart</title>
     <link rel="stylesheet" href="style.css">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 <body>
     <header>
@@ -41,50 +41,51 @@
         <p><strong>Total:</strong> <span id="cart-total">৳0</span></p>
     </div>
 
-    <div class="search-bar">
-        <input type="text" placeholder="Search for products...">
-        <button>Search</button>
-    </div>
-
-    <div class="category-menu">
-        <div class="dropdown">
-            <button class="dropbtn">Groceries ⌄</button>
-            <div class="dropdown-content">
-                <a href="#">Favourites</a>
-                <a href="#">Offers</a>
-                <a href="#">Fruit & Vegetables</a>
-                <a href="#">Meat & Fish</a>
-                <a href="#">Dairy, Eggs & Chilled</a>
-                <a href="#">Bakery</a>
-                <a href="#">Dietary & World Foods</a>
-                <a href="#">Food Cupboard</a>
-                <a href="#">Occasions</a>
-                <a href="#">Drinks</a>
-                <a href="#">Frozen</a>
-                <a href="#">Household, Laundry & Cleaning</a>
-                <a href="#">Beauty & Cosmetics</a>
-                <a href="#">Toiletries & Health</a>
-                <a href="#">Baby & Toddler</a>
-                <a href="#">Pet</a>
-                <a href="#">Homeware, Garden & Flowers</a>
-                <a href="#">Coffee</a>
-                <a href="#">Meal Deals</a>
-            </div>
-        </div>
-    </div>
-
     <main>
-        <section class="hero">
-            <h1>Welcome to QuickMart</h1>
-            <p>Your favorite neighborhood grocery store in Bangladesh.</p>
-        </section>
+        <div class="search-container">
+            <div class="search-bar">
+                <input type="text" placeholder="Search for products...">
+                <button>Search</button>
+            </div>
 
-        <section class="products-container">
-            <div class="product-card">
+            <div class="menu-dropdown">
+                <button id="menuToggle">⋮</button>
+                <div id="menuItems" class="menu-items hidden">
+                    <a href="#">Favourites</a>
+                    <a href="#">Offers</a>
+                    <a href="#">Fruit & Vegetables</a>
+                    <a href="#">Meat & Fish</a>
+                    <a href="#">Dairy, Eggs & Chilled</a>
+                    <a href="#">Bakery</a>
+                    <a href="#">Dietary & World Foods</a>
+                    <a href="#">Food Cupboard</a>
+                    <a href="#">Occasions</a>
+                    <a href="#">Drinks</a>
+                    <a href="#">Frozen</a>
+                    <a href="#">Household, Laundry & Cleaning</a>
+                    <a href="#">Beauty & Cosmetics</a>
+                    <a href="#">Toiletries & Health</a>
+                    <a href="#">Baby & Toddler</a>
+                    <a href="#">Pet</a>
+                    <a href="#">Homeware, Garden & Flowers</a>
+                    <a href="#">Coffee</a>
+                    <a href="#">Meal Deals</a>
+                </div>
+            </div>
+            </div>
+
+        <div class="welcome-banner">
+            <p>Welcome to QuickMart</p>
+        </div>
+
+
+  
+           <section class="products-container">
+              <div class="product-card">
                 <img src="cucumber.jpg.png" alt="Cucumber">
                 <h3>Cucumber</h3>
                 <p class="tag">Vegetables</p>
-                <p><strong>৳20</strong> <span class="old-price">৳30s</span></p>
+                <p><strong>৳20</strong> <span class="old-price">৳30</span></p>
                 <button onclick="addToCart('Product Name 1', 450)">Add</button>
             </div>
 
@@ -511,20 +512,6 @@
     <p><strong>৳40</strong></p>
     <button onclick="addToCart('Lays American Style', 40)">Add</button>
 </div>    
-
-     </section>
-
-        <section class="contact">
-            <h2>Contact Us</h2>
-            <p>Phone: 01234-567890</p>
-            <p>Email: info@quickmart.com</p>
-        </section>
-
-        <section class="location">
-            <h2>Our Location</h2>
-            <p>Dhaka, Bangladesh</p>
-        </section>
-    </main>
 
     <footer>
         <p>&copy; 2025 QuickMart. All rights reserved.</p>
