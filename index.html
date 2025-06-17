@@ -8,7 +8,9 @@
 </head>
 <body>
     <header>
-        <img src="logo.jpg.jpg" alt="QuickMart Logo" class="logo">
+        <div class="header-left">
+            <img src="logo.jpg.jpg" alt="QuickMart Logo" class="logo">
+
         <nav>
             <ul class="nav-links">
                 <li><a href="#">Home</a></li>
@@ -21,8 +23,7 @@
         </nav>
     </header>
 
-    <div id="login-popup" style="display:none; position:absolute; top:80px; right:20px; background:#fff; border:1px solid #ccc; padding:15px; box-shadow: 0 2px 5px rgba(0,0,0,0.2); z-index:1000;">
-        <h3>Login</h3>
+    <div id="login-popup" style="display:none;"> <h3>Login</h3>
         <input type="email" id="login-email" placeholder="Email"><br><br>
         <input type="password" id="login-password" placeholder="Password"><br><br>
         <button onclick="login()">Login</button>
@@ -35,8 +36,7 @@
         <p id="message" style="color:green; font-size: 0.9rem;"></p>
     </div>
 
-    <div id="cart-box" style="display:none; position:fixed; top:80px; right:20px; background:#fff; border:1px solid #ccc; padding:15px; box-shadow: 0 2px 5px rgba(0,0,0,0.2); width:300px; z-index:1000;">
-        <h3>Your Cart</h3>
+    <div id="cart-box" style="display:none;"> <h3>Your Cart</h3>
         <ul id="cart-items"></ul>
         <p><strong>Total:</strong> <span id="cart-total">৳0</span></p>
     </div>
@@ -47,10 +47,15 @@
                 <input type="text" placeholder="Search for products...">
                 <button>Search</button>
             </div>
-
-            <div class="menu-dropdown">
-                <button id="menuToggle">⋮</button>
-                <div id="menuItems" class="menu-items hidden">
+            </div>
+            
+             <div class="category-menu-container">
+                <button id="menuToggleButton" class="three-dots-button">
+                    <span class="dot"></span>
+                    <span class="dot"></span>
+                    <span class="dot"></span>
+                </button>
+                <div id="categoryMenu" class="category-dropdown-content">
                     <a href="#">Favourites</a>
                     <a href="#">Offers</a>
                     <a href="#">Fruit & Vegetables</a>
@@ -75,9 +80,8 @@
             </div>
 
         <div class="welcome-banner">
-            <p>Welcome to QuickMart</p>
+            Welcome to QuickMart
         </div>
-
 
   
            <section class="products-container">
@@ -241,7 +245,6 @@
         <p><strong>৳650</strong> <span class="old-price">৳750</span></p>
         <button onclick="addToCart('Pabda Fish', 650)">Add</button>
     </div>
-    <section class="products-container">
 
     <div class="product-card">
         <img src="milk.jpg" alt="UHT Milk">
@@ -370,23 +373,24 @@
         <p><strong>৳190</strong> <span class="old-price"></span></p>
         <button onclick="addToCart('French Fries (Golden Harvest)', 190)">Add</button>
     </div>
+
     <div class="product-card">
     <img src="cup noodles.jpg" alt="Nissin Japanese Style Beef Cup Noodles 66gm">
     <h3>Nissin Japanese Style Beef Cup Noodles 66gm</h3>
     <p class="tag">Noodles</p>
     <p><strong>৳170</strong></p>
     <button onclick="addToCart('Nissin Beef Cup Noodles', 170)">Add</button>
-</div>
+   </div>
 
-<div class="product-card">
+    <div class="product-card">
     <img src="maggi noodles.jpg" alt="Maggi Masala Family Fun Pack 992gm">
     <h3>Maggi Masala Family Fun Pack 992gm</h3>
     <p class="tag">Noodles</p>
     <p><strong>৳340</strong></p>
     <button onclick="addToCart('Maggi Masala Family Pack', 340)">Add</button>
-</div>
+    </div>
 
-<div class="product-card">
+     <div class="product-card">
     <img src="eggy noodles.jpg" alt="Ifad Eggy Instant Noodles 400gm">
     <h3>Ifad Eggy Instant Noodles 400gm (Buy2 Get1 Free)</h3>
     <p class="tag">Noodles</p>

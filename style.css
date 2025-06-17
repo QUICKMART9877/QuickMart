@@ -8,35 +8,42 @@
 body {
     font-family: Arial, sans-serif;
     background-color: #f5f5f5;
-    /* IMPROVEMENT: Added some basic padding to prevent content from sticking to the edges */
     padding-bottom: 50px; /* Space for footer */
 }
 
-/* Header (formerly .navbar in your CSS, but HTML uses <header>) */
-header { /* FIX: Targeted the <header> element directly as per your HTML */
+/* Header */
+header {
     display: flex;
     justify-content: space-between;
     align-items: center;
     background-color: #ffffff;
     padding: 10px 20px;
     border-bottom: 1px solid #ddd;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.05); /* IMPROVEMENT: Added a subtle shadow */
-    position: sticky; /* IMPROVEMENT: Make header sticky */
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+    position: sticky; /* Make header sticky */
     top: 0;
     z-index: 1000;
 }
 
-header .logo { /* FIX: Targeted the logo inside the header */
-    width: 120px; /* IMPROVEMENT: Set a fixed width for the logo image */
+/* Added for header-left division as per new HTML */
+.header-left {
+    display: flex;
+    align-items: center;
+    position: relative; /* Make this relative for absolute positioning of category menu if needed */
+}
+
+header .logo {
+    width: 120px; /* Set a fixed width for the logo image */
     height: auto;
-    display: block; /* Ensures no extra space below image */
+    display: block;
+    margin-right: 20px; /* Space between logo and menu button if they are side-by-side initially */
 }
 
 /* Navigation Links */
 .nav-links {
-    list-style: none; /* Removes bullet points */
+    list-style: none;
     display: flex;
-    gap: 20px; /* Spacing between nav items */
+    gap: 20px;
 }
 
 .nav-links a {
@@ -48,7 +55,7 @@ header .logo { /* FIX: Targeted the logo inside the header */
 }
 
 .nav-links a:hover {
-    color: #FFD700; /* Highlight on hover */
+    color: #FFD700;
 }
 
 /* Search Container & Bar */
@@ -57,10 +64,10 @@ header .logo { /* FIX: Targeted the logo inside the header */
     justify-content: center;
     align-items: center;
     padding: 15px 20px;
-    background-color: #f0f0f0; /* Light background for the search section */
+    background-color: #f0f0f0;
     border-bottom: 1px solid #e0e0e0;
-    gap: 10px; /* Space between search bar and menu */
-    flex-wrap: wrap; /* Allow wrapping on smaller screens */
+    gap: 10px;
+    flex-wrap: wrap;
 }
 
 .search-bar {
@@ -71,12 +78,12 @@ header .logo { /* FIX: Targeted the logo inside the header */
 .search-bar input {
     padding: 8px 12px;
     border: 1px solid #ccc;
-    border-radius: 20px; /* More rounded search bar */
-    width: 250px; /* Default width */
+    border-radius: 20px;
+    width: 250px;
     font-size: 1rem;
 }
 
-.search-bar button { /* FIX: Added styles for the search button */
+.search-bar button {
     padding: 8px 15px;
     background-color: #333;
     color: #fff;
@@ -90,67 +97,91 @@ header .logo { /* FIX: Targeted the logo inside the header */
     background-color: #555;
 }
 
-/* Menu dropdown (3 dots) */
-.menu-dropdown {
-    position: relative;
-    display: inline-block;
+/* ============== NEW CODE FOR CATEGORY MENU STYLING ============ */
+
+/* Category Menu Container */
+.category-menu-container {
+    position: absolute; /* Position relative to the nearest positioned ancestor (e.g., body or .header-left) */
+    /* Adjust these values to fine-tune the position relative to your logo */
+    top: 60px; /* Example: Below the header, adjust based on your header's height */
+    left: 20px; /* Example: Aligned with the left edge of the content, adjust as needed */
+    z-index: 1001; /* Ensure it's above other content but below pop-ups */
 }
 
-#menuToggle {
+/* Three Dots Button Styling (Replaces previous #menuToggle) */
+.three-dots-button {
     background: none;
     border: none;
-    font-size: 28px; /* Larger three dots */
     cursor: pointer;
-    padding: 5px 10px; /* Make it easier to click */
+    padding: 8px 12px; /* Adjusted padding for better click area */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    width: 35px; /* Slightly larger button */
+    height: 30px;
+    box-sizing: border-box;
+    transition: background-color 0.3s ease; /* Smooth hover */
     border-radius: 5px;
-    transition: background-color 0.3s ease;
 }
 
-#menuToggle:hover {
+.three-dots-button:hover {
     background-color: #e0e0e0;
 }
 
-.menu-items {
-    display: flex;
-    flex-direction: column;
+.three-dots-button .dot {
+    width: 5px; /* Slightly larger dots */
+    height: 5px;
+    background-color: #333; /* Color of the dots */
+    border-radius: 50%;
+    margin: 2px 0; /* Space between dots */
+}
+
+/* Category Dropdown Content (Replaces previous .menu-items) */
+.category-dropdown-content {
+    display: none; /* Hidden by default */
     position: absolute;
-    right: 0;
-    background-color: white;
-    border: 1px solid #ddd;
-    z-index: 1001; /* Higher z-index to be above other content */
-    padding: 10px;
-    min-width: 180px; /* Wider menu for longer text */
-    border-radius: 8px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15); /* More prominent shadow */
+    background-color: #f9f9f9;
+    min-width: 280px; /* Wider menu for longer text */
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1; /* Relative to its parent (.category-menu-container) */
+    left: 0; /* Align with the button */
+    top: calc(100% + 5px); /* Position it right below the button with a small gap */
+    border-radius: 5px;
+    padding: 10px 0;
+    font-family: Arial, sans-serif; /* Consistent font */
 }
 
-.menu-items a {
-    padding: 8px 15px; /* More padding for links */
+.category-dropdown-content a {
+    color: black;
+    padding: 12px 16px;
     text-decoration: none;
-    color: #333;
-    white-space: nowrap; /* Prevents text from wrapping */
+    display: block;
+    transition: background-color 0.2s ease;
 }
 
-.menu-items a:hover {
-    background-color: #f2f2f2;
-    border-radius: 4px;
+.category-dropdown-content a:hover {
+    background-color: #ddd;
 }
 
-.hidden {
-    display: none;
+/* Class to show the dropdown (will be toggled by JavaScript) */
+.category-dropdown-content.show {
+    display: block;
 }
+/* ============ END NEW CODE FOR CATEGORY MENU STYLING ========== */
+
 
 /* Login/Cart Pop-ups (Moved from inline styles) */
 #login-popup,
 #cart-box {
     background: #fff;
     border: 1px solid #ccc;
-    padding: 20px; /* Increased padding */
-    box-shadow: 0 4px 10px rgba(0,0,0,0.15); /* Stronger shadow */
+    padding: 20px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.15);
     z-index: 1002; /* Even higher z-index for pop-ups */
     border-radius: 8px;
     max-width: 350px;
-    position: absolute; /* Kept absolute as per your HTML */
+    position: absolute;
     top: 80px;
     right: 20px;
     box-sizing: border-box;
@@ -213,62 +244,62 @@ header .logo { /* FIX: Targeted the logo inside the header */
 
 /* Welcome Banner */
 .welcome-banner {
-    background-color: #e6f7ff; /* Lighter blue, more inviting */
-    color: #0056b3; /* Darker blue text */
-    font-size: 1.1rem; /* Slightly larger font */
-    padding: 10px 15px; /* More padding */
-    margin: 20px auto; /* Increased margin */
+    background-color: #e6f7ff;
+    color: #0056b3;
+    font-size: 1.1rem;
+    padding: 10px 15px;
+    margin: 20px auto;
     text-align: center;
-    border-radius: 8px; /* More rounded corners */
-    max-width: 90%; /* Slightly smaller max width */
+    border-radius: 8px;
+    max-width: 90%;
     word-wrap: break-word;
-    border: 1px solid #b3e0ff; /* Subtle border */
+    border: 1px solid #b3e0ff;
 }
 
 /* Product Container - for grid layout */
 .products-container {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); /* Responsive grid */
-    gap: 25px; /* Space between product cards */
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 25px;
     padding: 25px;
-    max-width: 1200px; /* Max width for the whole grid */
-    margin: 20px auto; /* Center the container */
+    max-width: 1200px;
+    margin: 20px auto;
 }
 
 /* Product Card */
 .product-card {
     background-color: #fff;
     border: 1px solid #ddd;
-    padding: 20px; /* Increased padding */
-    border-radius: 10px; /* More rounded corners */
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Stronger shadow */
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
     display: flex;
     flex-direction: column;
     align-items: center;
     text-align: center;
-    transition: transform 0.2s ease-in-out; /* Smooth hover effect */
+    transition: transform 0.2s ease-in-out;
 }
 
 .product-card:hover {
-    transform: translateY(-5px); /* Lift effect on hover */
+    transform: translateY(-5px);
 }
 
-.product-card img { /* FIX: Targeted image directly as per your HTML */
-    width: 100%; /* Ensures image fills card width */
-    max-height: 180px; /* Constrain image height */
-    object-fit: contain; /* Ensures image aspect ratio is maintained */
+.product-card img {
+    width: 100%;
+    max-height: 180px;
+    object-fit: contain;
     border-radius: 8px;
-    margin-bottom: 15px; /* Space below image */
+    margin-bottom: 15px;
 }
 
-.product-card h3 { /* FIX: Targeted h3 directly as per your HTML */
-    font-size: 1.3rem; /* Larger title */
+.product-card h3 {
+    font-size: 1.3rem;
     margin-bottom: 10px;
     color: #333;
     font-weight: 600;
 }
 
-.product-card .tag { /* Style for the category tag */
+.product-card .tag {
     background-color: #e0e0e0;
     color: #666;
     padding: 4px 8px;
@@ -277,32 +308,32 @@ header .logo { /* FIX: Targeted the logo inside the header */
     margin-bottom: 10px;
 }
 
-.product-card p { /* FIX: Targeted p directly as per your HTML */
-    font-size: 1.1rem; /* Consistent price font size */
+.product-card p {
+    font-size: 1.1rem;
     margin-bottom: 15px;
-    display: flex; /* To align prices horizontally */
+    display: flex;
     align-items: baseline;
     gap: 8px;
 }
 
-.product-card strong { /* Current price is already bolded by strong tag */
-    color: #28a745; /* Green for current price */
-    font-size: 1.3rem; /* Larger current price */
+.product-card strong {
+    color: #28a745;
+    font-size: 1.3rem;
 }
 
 .product-card .old-price {
     text-decoration: line-through;
     color: #888;
-    font-size: 0.95rem; /* Smaller old price */
+    font-size: 0.95rem;
 }
 
 /* Add Button */
-.product-card button { /* FIX: Targeted button directly as per your HTML */
+.product-card button {
     background-color: #FFD700;
     color: #000;
-    padding: 10px 20px; /* More padding */
+    padding: 10px 20px;
     border: none;
-    border-radius: 25px; /* More rounded button */
+    border-radius: 25px;
     cursor: pointer;
     font-weight: bold;
     font-size: 1rem;
@@ -311,7 +342,7 @@ header .logo { /* FIX: Targeted the logo inside the header */
 
 .product-card button:hover {
     background-color: #FFC300;
-    transform: translateY(-2px); /* Slight lift on hover */
+    transform: translateY(-2px);
 }
 
 /* Contact & Location Sections */
@@ -344,15 +375,21 @@ footer {
     color: #fff;
     text-align: center;
     padding: 15px 0;
-    margin-top: 30px; /* Space above footer */
+    margin-top: 30px;
     font-size: 0.9rem;
 }
 
 /* Mobile Responsiveness */
-@media screen and (max-width: 768px) { /* Adjusted breakpoint for better tablet support */
+@media screen and (max-width: 768px) {
     header {
-        flex-direction: column; /* Stack header items vertically */
+        flex-direction: column;
         padding: 10px;
+    }
+
+    .header-left {
+        width: 100%; /* Ensure left header takes full width for stacking */
+        justify-content: center; /* Center logo and button */
+        margin-bottom: 10px; /* Space between header-left and nav-links */
     }
 
     .nav-links {
@@ -361,6 +398,25 @@ footer {
         justify-content: center;
     }
 
+    /* Adjust position of category menu for smaller screens */
+    .category-menu-container {
+        position: static; /* Remove absolute positioning on small screens to flow with content */
+        margin-top: 10px; /* Space below logo/button */
+        margin-left: 0;
+        width: 100%; /* Allow it to take full width */
+        display: flex; /* Flex to center button if needed */
+        justify-content: center;
+    }
+
+    .category-dropdown-content {
+        position: static; /* Let it flow normally below the button */
+        width: 100%; /* Full width */
+        min-width: unset; /* Remove min-width restriction */
+        max-width: 300px; /* Example max width to prevent it from being too wide */
+        margin: 10px auto; /* Center the dropdown itself */
+    }
+
+
     .search-container {
         flex-direction: column;
         padding: 10px;
@@ -368,8 +424,8 @@ footer {
     }
 
     .search-bar input {
-        width: 100%; /* Full width for search input on small screens */
-        max-width: 300px; /* Max width for input */
+        width: 100%;
+        max-width: 300px;
     }
 
     .search-bar button {
@@ -383,7 +439,7 @@ footer {
     }
 
     .products-container {
-        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); /* Smaller cards on mobile */
+        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
         padding: 15px;
     }
 
@@ -393,11 +449,11 @@ footer {
 
     #login-popup,
     #cart-box {
-        top: 60px; /* Adjust position for smaller screens */
+        top: 60px;
         right: 10px;
         max-width: 90%;
-        width: auto; /* Allow content to dictate width up to max-width */
-        left: 10px; /* Center by adding left and auto right margin */
+        width: auto;
+        left: 10px;
         margin: 0 auto;
     }
 }
@@ -412,7 +468,5 @@ footer {
         padding: 3px 0;
     }
 
-    .menu-items {
-        min-width: 150px;
-    }
+    /* Category menu might need further adjustments here if it's not looking right */
 }

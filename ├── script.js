@@ -4,13 +4,13 @@ import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, se
 
 // ✅ Your Firebase config
 const firebaseConfig = {
-  apiKey: "AIzaSyCWI4njR31bAXnZ3NmUr31QgeP3teD6VGs",
-  authDomain: "quickmart-76484.firebaseapp.com",
-  projectId: "quickmart-76484",
-  storageBucket: "quickmart-76484.firebasestorage.app",
-  messagingSenderId: "450744017441",
-  appId: "1:450744017441:web:b8d72c8666f01662cfb960",
-  measurementId: "G-B4YGQ0PKVB"
+    apiKey: "AIzaSyCWI4njR31bAXnZ3NmUr31QgeP3teD6VGs",
+    authDomain: "quickmart-76484.firebaseapp.com",
+    projectId: "quickmart-76484",
+    storageBucket: "quickmart-76484.firebasestorage.app",
+    messagingSenderId: "450744017441",
+    appId: "1:450744017441:web:b8d72c8666f01662cfb960",
+    measurementId: "G-B4YGQ0PKVB"
 };
 
 // ✅ Initialize Firebase
@@ -19,44 +19,45 @@ const auth = getAuth(app);
 
 // ✅ Sign Up
 window.signUp = function () {
-  const email = document.getElementById("signup-email").value;
-  const password = document.getElementById("signup-password").value;
+    const email = document.getElementById("signup-email").value;
+    const password = document.getElementById("signup-password").value;
 
-  createUserWithEmailAndPassword(auth, email, password)
-    .then(() => {
-      document.getElementById("message").innerText = "✅ Sign up successful!";
-    })
-    .catch((error) => {
-      document.getElementById("message").innerText = `❌ ${error.message}`;
-    });
+    createUserWithEmailAndPassword(auth, email, password)
+        .then(() => {
+            document.getElementById("message").innerText = "✅ Sign up successful!";
+        })
+        .catch((error) => {
+            document.getElementById("message").innerText = `❌ ${error.message}`;
+        });
 };
 
 // ✅ Login
 window.login = function () {
-  const email = document.getElementById("login-email").value;
-  const password = document.getElementById("login-password").value;
+    const email = document.getElementById("login-email").value;
+    const password = document.getElementById("login-password").value;
 
-  signInWithEmailAndPassword(auth, email, password)
-    .then(() => {
-      document.getElementById("message").innerText = "✅ Login successful!";
-    })
-    .catch((error) => {
-      document.getElementById("message").innerText = `❌ ${error.message}`;
-    });
+    signInWithEmailAndPassword(auth, email, password)
+        .then(() => {
+            document.getElementById("message").innerText = "✅ Login successful!";
+        })
+        .catch((error) => {
+            document.getElementById("message").innerText = `❌ ${error.message}`;
+        });
 };
 
 // ✅ Forgot Password
 window.forgotPassword = function () {
-  const email = document.getElementById("login-email").value;
+    const email = document.getElementById("login-email").value;
 
-  sendPasswordResetEmail(auth, email)
-    .then(() => {
-      document.getElementById("message").innerText = "📧 Reset email sent!";
-    })
-    .catch((error) => {
-      document.getElementById("message").innerText = `❌ ${error.message}`;
-    });
+    sendPasswordResetEmail(auth, email)
+        .then(() => {
+            document.getElementById("message").innerText = "📧 Reset email sent!";
+        })
+        .catch((error) => {
+            document.getElementById("message").innerText = `❌ ${error.message}`;
+        });
 };
+
 let cart = [];
 
 function addToCart(name, price) {
@@ -87,3 +88,25 @@ function toggleCart() {
     const cartBox = document.getElementById("cart-box");
     cartBox.style.display = cartBox.style.display === "none" ? "block" : "none";
 }
+
+
+// ============== NEW CODE FOR CATEGORY MENU TOGGLE ============
+document.addEventListener('DOMContentLoaded', function() {
+    const menuToggleButton = document.getElementById('menuToggleButton');
+    const categoryMenu = document.getElementById('categoryMenu');
+
+    if (menuToggleButton && categoryMenu) {
+        menuToggleButton.addEventListener('click', function() {
+            categoryMenu.classList.toggle('show');
+        });
+
+        // Optional: Close the dropdown if the user clicks outside of it
+        document.addEventListener('click', function(event) {
+            // Check if the clicked target is neither the menu button nor inside the category menu
+            if (!categoryMenu.contains(event.target) && !menuToggleButton.contains(event.target)) {
+                categoryMenu.classList.remove('show');
+            }
+        });
+    }
+});
+// ============ END NEW CODE FOR CATEGORY MENU TOGGLE ==========
